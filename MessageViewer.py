@@ -403,6 +403,10 @@ class Element:
         # 0xFA is for colours according to Zhong-ba, but my research points to it being for scrolling,
         # Therefore I am also going to omit it until I can figure out how exactly it works.
         # Once I figure it out, it will go here.
+        if b'\xfa' in raw:
+            i = raw.index(b'\xfa')
+            self.fa_bytes = raw[i+1:i+3]
+            self.raw = self.raw.replace(raw[i:i+3], b'')
 
         # In theory, all controls should be accounted for,
         # and we can safely convert to ASCII?
